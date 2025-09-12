@@ -126,9 +126,9 @@ def exec(csv_path, txt_path, bin_type):
     # Choosing the container and adding it to the list
     if bin_type == "Container":
         container_3d.append(container)
-    elif bin_type == "Camion Motrice":
+    elif bin_type == "Truck Engine":
         container_3d.append(camion_motrice)
-    elif bin_type == "Camion Bilico":
+    elif bin_type == "Tractor-Trailer":
         container_3d.append(camion_bilico)
     else:
         container_3d.append(container)
@@ -144,3 +144,4 @@ def exec(csv_path, txt_path, bin_type):
 
 
 #exec(csv_path = "C:\\Users\\stage.convett\\Documents\\T_20250320_143411.csv") #debug
+
