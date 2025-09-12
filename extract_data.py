@@ -2,16 +2,16 @@ import pandas as pd
 
 def exec(csv_path, txt_path, bin_type):
     
-    # Lista contenente gli oggetti del csv
+    # List containing the objects of the csv
     dati = []
     
-    # Lista contenente gli oggetti per la visualizzazione 3D
+    # List containing objects for 3D viewing
     items_3d = []
     
-    # Lista contentenente il contenitore
+    # List containing the container
     container_3d = []
     
-    # Estrae i nomi delle colonne del csv dal file di txt di configurazione
+    # Extracts the csv column names from the configuration txt file
     try:
         with open(txt_path, 'r') as file:
             lines = file.readlines()
@@ -26,7 +26,7 @@ def exec(csv_path, txt_path, bin_type):
         print("Error: TXT file does not contain enough lines")
         #exit()
 
-    # Creazione della classe per gli oggetti pallet
+    # Creating the class for pallet objects
     class DimensioniPallet:
         def __init__(self, id=None, lungh=None, largh=None, peso=None, altezza=None):
             self.lungh = lungh
@@ -36,7 +36,7 @@ def exec(csv_path, txt_path, bin_type):
             self.peso= peso
             self.altezza= altezza
             
-    # Pulizia dei dati da caratteri indesiderati e conversione dei valori estratti da str a float convertiti in metri
+    # Cleaning data from unwanted characters and converting extracted values from str to float converted to meters
     def convert_to_meters(value_str):
         try:
             cleaned_value = value_str.split(";")[0]
@@ -47,7 +47,7 @@ def exec(csv_path, txt_path, bin_type):
             print(f"Error converting value: {value_str}")
         return 0.0
 
-    # Pulizia dei dati da caratteri indesiderati e conversione dei valori estratti da str a float
+    # Cleaning data from unwanted characters and converting extracted values from str to float
     def convert_to_float(value_str):
         try:
             cleaned_value = value_str.split(";")[0]
@@ -60,7 +60,7 @@ def exec(csv_path, txt_path, bin_type):
     
     file_path = csv_path
 
-    # Lettura del file CSV
+    # Reading the CSV file
     try:
         myCSVfile = pd.read_csv(
             file_path,
@@ -80,7 +80,7 @@ def exec(csv_path, txt_path, bin_type):
         print("Error: CSV file is empty")
         exit()
 
-    # Estrazione dei valori degli oggetti dal file csv
+    # Extract object values from csv file
     for _, row in myCSVfile.iterrows():
     
         id = row[nome]
@@ -99,7 +99,7 @@ def exec(csv_path, txt_path, bin_type):
         pallet.id=pallet.id[-8:]
         dati.append(pallet)
         
-    #preparazione dei dati per la visualizzazione 3D
+    #Preparing data for 3D visualization
     for item in dati:
         item.name=item.id
         item.width=item.largh
@@ -109,7 +109,7 @@ def exec(csv_path, txt_path, bin_type):
         
         items_3d.append(item)
     
-    # Creazione della classe per generare l'oggetto contenitore
+    # Creating the class to generate the container object
     class Bin3d:
         def __init__(self, name =None, width = None, height = None, depth = None, max_weight = None):
             self.name = name
@@ -118,12 +118,12 @@ def exec(csv_path, txt_path, bin_type):
             self.depth = depth
             self.max_weight = max_weight
     
-    # Creazione del oggetto contenitore
+    # Creating the container object
     container = Bin3d("Container", 2.30, 2.36, 12.03, 30480)
     camion_motrice = Bin3d("Camion Motrice", 2.40, 2.36, 8.00, 10000)
     camion_bilico = Bin3d("Camion Bilico", 2.40, 2.36, 13.60,24000)
     
-    # Scelta del contenitore e aggiunta alla lista
+    # Choosing the container and adding it to the list
     if bin_type == "Container":
         container_3d.append(container)
     elif bin_type == "Camion Motrice":
@@ -141,5 +141,6 @@ def exec(csv_path, txt_path, bin_type):
     #"""
 
     return container_3d, items_3d
+
 
 #exec(csv_path = "C:\\Users\\stage.convett\\Documents\\T_20250320_143411.csv") #debug
