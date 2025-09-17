@@ -28,18 +28,18 @@ def exec(container_3d, items_3d):
                                 i=cont_i, j=cont_j, k=cont_k,
                                 color="lightskyblue",
                                 opacity=0.8,
-                                name="Contenitore")])
+                                name="Bin/Container")])
         return cont
 
     # Insertion and adaptation of the container into the layout
     def inserimento_layout_contenitore(cont):
         cont.update_layout(scene=dict(
-            xaxis_title="Lunghezza",
-            yaxis_title="Larghezza",
-            zaxis_title="Altezza",
+            xaxis_title="Length",
+            yaxis_title="Width",
+            zaxis_title="Height",
             aspectratio=dict(x=cont_lunghezza, y=cont_larghezza, z=cont_altezza),
             ),
-            title="Carico del Camion/Container",
+            title="Truck/container load",
     )
         return cont
 
