@@ -356,4 +356,5 @@ if __name__== "__main__":
     sys.exit(app.exec())
 
 #Pyinstaller Prompt
-#pyinstaller --onedir --windowed --add-data icon.ico:. --icon=icon.ico --hidden-import pandas --hidden-import plotly --hidden-import numpy --hidden-import PyQt6 --name="Easy Payload" --exclude PyQt5 main.py
+#pyinstaller --onedir --windowed --add-data icon.ico:. --icon=icon.ico --collect-all pandas --collect-all plotly --collect-all numpy --hidden-import PyQt6 --name="Easy Payload" --exclude PyQt5 main.py
+
